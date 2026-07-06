@@ -1,0 +1,33 @@
+# Sampled IoT readings (JSON-lines). Two devices, all within one 1-minute window
+# [60000, 120000). sensor-A ~20C with one injected spike; sensor-B ~50C, all normal.
+{"deviceId": "sensor-A", "temperatureC": 20.1, "timestampMillis": 60000}
+{"deviceId": "sensor-A", "temperatureC": 19.9, "timestampMillis": 60500}
+{"deviceId": "sensor-A", "temperatureC": 20.0, "timestampMillis": 61000}
+{"deviceId": "sensor-A", "temperatureC": 20.2, "timestampMillis": 61500}
+{"deviceId": "sensor-A", "temperatureC": 19.8, "timestampMillis": 62000}
+{"deviceId": "sensor-A", "temperatureC": 20.0, "timestampMillis": 62500}
+{"deviceId": "sensor-A", "temperatureC": 20.1, "timestampMillis": 63000}
+{"deviceId": "sensor-A", "temperatureC": 19.9, "timestampMillis": 63500}
+{"deviceId": "sensor-A", "temperatureC": 20.0, "timestampMillis": 64000}
+{"deviceId": "sensor-A", "temperatureC": 20.3, "timestampMillis": 64500}
+{"deviceId": "sensor-A", "temperatureC": 19.7, "timestampMillis": 65000}
+{"deviceId": "sensor-A", "temperatureC": 20.0, "timestampMillis": 65500}
+{"deviceId": "sensor-A", "temperatureC": 20.1, "timestampMillis": 66000}
+{"deviceId": "sensor-A", "temperatureC": 19.9, "timestampMillis": 66500}
+{"deviceId": "sensor-A", "temperatureC": 20.0, "timestampMillis": 67000}
+{"deviceId": "sensor-A", "temperatureC": 95.4, "timestampMillis": 67500}
+{"deviceId": "sensor-B", "temperatureC": 50.0, "timestampMillis": 60000}
+{"deviceId": "sensor-B", "temperatureC": 49.8, "timestampMillis": 60500}
+{"deviceId": "sensor-B", "temperatureC": 50.2, "timestampMillis": 61000}
+{"deviceId": "sensor-B", "temperatureC": 50.1, "timestampMillis": 61500}
+{"deviceId": "sensor-B", "temperatureC": 49.9, "timestampMillis": 62000}
+{"deviceId": "sensor-B", "temperatureC": 50.0, "timestampMillis": 62500}
+{"deviceId": "sensor-B", "temperatureC": 49.7, "timestampMillis": 63000}
+{"deviceId": "sensor-B", "temperatureC": 50.3, "timestampMillis": 63500}
+{"deviceId": "sensor-B", "temperatureC": 50.0, "timestampMillis": 64000}
+{"deviceId": "sensor-B", "temperatureC": 49.9, "timestampMillis": 64500}
+{"deviceId": "sensor-B", "temperatureC": 50.1, "timestampMillis": 65000}
+{"deviceId": "sensor-B", "temperatureC": 50.0, "timestampMillis": 65500}
+{"deviceId": "sensor-B", "temperatureC": 49.8, "timestampMillis": 66000}
+{"deviceId": "sensor-B", "temperatureC": 50.2, "timestampMillis": 66500}
+{"deviceId": "sensor-B", "temperatureC": 50.0, "timestampMillis": 67000}

@@ -1,0 +1,36 @@
+# ---- Gradle ----
+.gradle/
+build/
+**/build/
+gradle-app.setting
+# Keep the wrapper jar so the project is self-contained; ignore only the dist cache.
+!gradle/wrapper/gradle-wrapper.jar
+
+# ---- Java build artifacts ----
+*.class
+*.jar
+!gradle/wrapper/gradle-wrapper.jar
+*.war
+*.ear
+hs_err_pid*
+replay_pid*
+
+# ---- IDE / editor ----
+.claude/
+.idea/
+*.iml
+*.ipr
+*.iws
+.vscode/
+.project
+.classpath
+.settings/
+*.swp
+
+# ---- OS cruft ----
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# ---- Logs ----
+*.log

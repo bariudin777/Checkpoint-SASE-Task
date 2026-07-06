@@ -1,0 +1,3 @@
+rootProject.name = 'iot-anomaly-detection'
+
+include 'app'

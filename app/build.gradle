@@ -1,0 +1,71 @@
+plugins {
+    id 'java'
+    id 'application'
+}
+
+group = 'com.checkpoint.iot'
+version = '0.1.0'
+
+// This checkout lives under a path containing non-ASCII (Hebrew) characters.
+// On Windows the forked JVMs (test worker, `run`) mis-decode such paths
+// (sun.jnu.encoding): compiled test classes fail to load, and file paths passed as
+// process args become invalid. Emitting build output to an ASCII directory keeps
+// every classpath entry and derived path ASCII, sidestepping the problem. Declared
+// first so all source-set output paths derive from it. Safe to remove if the
+// project is ever checked out under an all-ASCII path.
+buildDir = new File(System.getProperty('java.io.tmpdir'), 'iot-anomaly-build/app')
+
+ext {
+    flinkVersion = '1.18.1'
+    junitVersion = '5.10.2'
+    jacksonVersion = '2.15.2'
+}
+
+java {
+    // Flink 1.18 runs on Java 11.
+    sourceCompatibility = JavaVersion.VERSION_11
+    targetCompatibility = JavaVersion.VERSION_11
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // Flink runtime kept on the normal (runtime) classpath so the job runs
+    // locally via `gradle run` and inside the MiniCluster test without a cluster.
+    implementation "org.apache.flink:flink-streaming-java:${flinkVersion}"
+    implementation "org.apache.flink:flink-clients:${flinkVersion}"
+
+    // JSON parsing for the sampled input file.
+    implementation "com.fasterxml.jackson.core:jackson-databind:${jacksonVersion}"
+
+    // Full-flow test against a local Flink MiniCluster.
+    testImplementation "org.apache.flink:flink-test-utils:${flinkVersion}"
+    testImplementation "org.junit.jupiter:junit-jupiter:${junitVersion}"
+    testRuntimeOnly "org.junit.platform:junit-platform-launcher"
+}
+
+application {
+    mainClass = 'com.checkpoint.iot.job.SimpleStdDevJob'
+}
+
+// The sample data is test-only (see src/test/resources), so it is not bundled in
+// the production jar. For the `gradle run` demo, feed the job that sample file by
+// path so it still shows anomalies out of the box; real deployments pass their own.
+// We pass the copy under the (ASCII) build dir rather than the source path, because
+// the source path contains non-ASCII characters that get mangled when handed to the
+// child JVM as a process argument on Windows.
+run {
+    dependsOn 'processTestResources'
+    def sampleData = new File(sourceSets.test.output.resourcesDir, 'sample-data/readings.jsonl')
+    args = [sampleData.absolutePath]
+}
+
+test {
+    useJUnitPlatform()
+    testLogging {
+        events "passed", "skipped", "failed"
+        showStandardStreams = true
+    }
+}
