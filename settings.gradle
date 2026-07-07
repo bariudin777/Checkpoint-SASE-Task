@@ -1,3 +1,4 @@
 rootProject.name = 'iot-anomaly-detection'
 
 include 'iot-anomaly-detector-basic-solution'
+include 'iot-anomaly-detector-welford-solution'
