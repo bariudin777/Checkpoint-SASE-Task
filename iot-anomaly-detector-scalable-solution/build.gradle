@@ -1,0 +1,51 @@
+plugins {
+    id 'java'
+    id 'application'
+}
+
+group = 'com.checkpoint.iot'
+version = '0.1.0'
+
+// See iot-anomaly-detector-basic-solution/build.gradle for why buildDir is
+// redirected to an ASCII temp path (this checkout lives under a non-ASCII path).
+buildDir = new File(System.getProperty('java.io.tmpdir'), 'iot-anomaly-build/iot-anomaly-detector-scalable-solution')
+
+ext {
+    flinkVersion = '1.18.1'
+    junitVersion = '5.10.2'
+}
+
+java {
+    // Flink 1.18 runs on Java 11.
+    sourceCompatibility = JavaVersion.VERSION_11
+    targetCompatibility = JavaVersion.VERSION_11
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // Reuses Reading, AggregatedStdDevJob (Welford pipeline) and ConsoleAnomalySink
+    // instead of duplicating them -- this module only adds data generation.
+    implementation project(':iot-anomaly-detector-welford-solution')
+
+    implementation "org.apache.flink:flink-streaming-java:${flinkVersion}"
+    implementation "org.apache.flink:flink-clients:${flinkVersion}"
+
+    testImplementation "org.apache.flink:flink-test-utils:${flinkVersion}"
+    testImplementation "org.junit.jupiter:junit-jupiter:${junitVersion}"
+    testRuntimeOnly "org.junit.platform:junit-platform-launcher"
+}
+
+application {
+    mainClass = 'com.checkpoint.iot.generator.ScalableAggregatedStdDevJob'
+}
+
+test {
+    useJUnitPlatform()
+    testLogging {
+        events "passed", "skipped", "failed"
+        showStandardStreams = true
+    }
+}

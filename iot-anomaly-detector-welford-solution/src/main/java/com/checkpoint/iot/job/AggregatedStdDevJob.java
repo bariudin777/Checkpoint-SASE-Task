@@ -47,11 +47,21 @@ public class AggregatedStdDevJob {
     }
 
     /**
-     * Applies the anomaly-detection pipeline to a stream of readings. Kept separate
-     * from {@link #main} and free of any specific source/sink so the full-flow test
-     * can feed it a fixed collection and capture its output.
+     * Applies the anomaly-detection pipeline to a stream of readings, using the
+     * default 1-minute window. Kept separate from {@link #main} and free of any
+     * specific source/sink so the full-flow test can feed it a fixed collection and
+     * capture its output.
      */
     public static DataStream<String> buildAnomalyStream(DataStream<Reading> source) {
+        return buildAnomalyStream(source, WINDOW_SIZE);
+    }
+
+    /**
+     * Same pipeline as {@link #buildAnomalyStream(DataStream)}, but with the window
+     * length as a parameter instead of the hardcoded 1-minute default &mdash; lets a
+     * caller (e.g. the scalable/generated-data job) drive the window size at runtime.
+     */
+    public static DataStream<String> buildAnomalyStream(DataStream<Reading> source, Time windowSize) {
         WatermarkStrategy<Reading> watermarks = WatermarkStrategy
                 .<Reading>forBoundedOutOfOrderness(Duration.ofSeconds(1))
                 .withTimestampAssigner((reading, ts) -> reading.getTimestampMillis());
@@ -59,7 +69,7 @@ public class AggregatedStdDevJob {
         return source
                 .assignTimestampsAndWatermarks(watermarks)
                 .keyBy(Reading::getDeviceId)
-                .window(TumblingEventTimeWindows.of(WINDOW_SIZE))
+                .window(TumblingEventTimeWindows.of(windowSize))
                 .aggregate(new WelfordAggregateFunction(), new WelfordAnomalyWindowFunction(SIGMA_THRESHOLD));
     }
 
