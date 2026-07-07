@@ -13,7 +13,7 @@ version = '0.1.0'
 // every classpath entry and derived path ASCII, sidestepping the problem. Declared
 // first so all source-set output paths derive from it. Safe to remove if the
 // project is ever checked out under an all-ASCII path.
-buildDir = new File(System.getProperty('java.io.tmpdir'), 'iot-anomaly-build/app')
+buildDir = new File(System.getProperty('java.io.tmpdir'), 'iot-anomaly-build/iot-anomaly-detector-basic-solution')
 
 ext {
     flinkVersion = '1.18.1'
