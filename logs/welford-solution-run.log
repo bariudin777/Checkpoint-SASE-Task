@@ -1,0 +1,14 @@
+> Task :iot-anomaly-detector-welford-solution:compileJava UP-TO-DATE
+> Task :iot-anomaly-detector-welford-solution:processResources NO-SOURCE
+> Task :iot-anomaly-detector-welford-solution:classes UP-TO-DATE
+> Task :iot-anomaly-detector-welford-solution:processTestResources UP-TO-DATE
+
+> Task :iot-anomaly-detector-welford-solution:run
+Loaded 31 readings; detecting anomalies...
+SLF4J: Failed to load class "org.slf4j.impl.StaticLoggerBinder".
+SLF4J: Defaulting to no-operation (NOP) logger implementation
+SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further details.
+Device sensor-A, measurement 95.4 C, time 67500
+
+BUILD SUCCESSFUL in 13s
+3 actionable tasks: 1 executed, 2 up-to-date

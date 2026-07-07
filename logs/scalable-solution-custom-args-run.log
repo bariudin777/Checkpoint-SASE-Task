@@ -1,0 +1,21 @@
+> Task :iot-anomaly-detector-welford-solution:compileJava UP-TO-DATE
+> Task :iot-anomaly-detector-welford-solution:processResources NO-SOURCE
+> Task :iot-anomaly-detector-welford-solution:classes UP-TO-DATE
+> Task :iot-anomaly-detector-welford-solution:jar UP-TO-DATE
+> Task :iot-anomaly-detector-scalable-solution:compileJava UP-TO-DATE
+> Task :iot-anomaly-detector-scalable-solution:processResources NO-SOURCE
+> Task :iot-anomaly-detector-scalable-solution:classes UP-TO-DATE
+
+> Task :iot-anomaly-detector-scalable-solution:run
+Generating 20 devices x 15 measurements/window x 1 window(s), window size 10s, anomaly probability 0.300, parallelism 4
+SLF4J: Failed to load class "org.slf4j.impl.StaticLoggerBinder".
+SLF4J: Defaulting to no-operation (NOP) logger implementation
+SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further details.
+Device device-0013, measurement 78.4 C, time 3996
+Device device-0019, measurement 78.3 C, time 5994
+Device device-0011, measurement 78.2 C, time 6660
+Device device-0014, measurement 80.2 C, time 4662
+Device device-0010, measurement 78.6 C, time 5328
+
+BUILD SUCCESSFUL in 14s
+4 actionable tasks: 1 executed, 3 up-to-date

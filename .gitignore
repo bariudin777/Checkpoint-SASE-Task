@@ -34,3 +34,5 @@ Desktop.ini
 
 # ---- Logs ----
 *.log
+# Keep the captured demo-run logs referenced from Readme.md.
+!logs/*.log
